@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -17,11 +15,12 @@ import java.util.Map;
 public class ApprovalLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_request_id")
     private ReportRequest requests;
-    private Map<String, LocalDate> approvals;
 
-
-
+    @OneToMany(mappedBy = "approvalLog", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Approval> approvals = new ArrayList<>();
 }

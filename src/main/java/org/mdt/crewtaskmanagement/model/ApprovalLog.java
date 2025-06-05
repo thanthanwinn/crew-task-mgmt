@@ -21,6 +21,5 @@ public class ApprovalLog {
     @JoinColumn(name = "report_request_id")
     private ReportRequest requests;
 
-    @OneToMany(mappedBy = "approvalLog", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Approval> approvals = new ArrayList<>();
+
 }

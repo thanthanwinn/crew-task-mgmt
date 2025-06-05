@@ -7,12 +7,12 @@ import java.time.format.DateTimeParseException;
 
 public class TaskScheduleMapper {
 
-    public static TaskSchedule fromDto(TaskScheduleDto dto, Task task, Crew crew, Ship ship) {
+    public static TaskAssignment fromDto(TaskScheduleDto dto, Task task, Crew crew, Ship ship) {
         if (dto == null) {
             return null;
         }
 
-        TaskSchedule taskSchedule = new TaskSchedule();
+        TaskAssignment taskSchedule = new TaskAssignment();
         taskSchedule.setTask(task);
         taskSchedule.setCrew(crew);
         taskSchedule.setShip(ship);
@@ -28,25 +28,26 @@ public class TaskScheduleMapper {
         return taskSchedule;
     }
 
-    public static TaskScheduleDto toDto(TaskSchedule entity) {
+    public static TaskScheduleDto toDto(TaskAssignment entity) {
         if (entity == null) {
             return null;
         }
 
         return TaskScheduleDto.builder()
                 .id(entity.getId())
-                .taskName(entity.getTask() != null ? entity.getTask().getTitle() : null)
-                .crewName(entity.getCrew() != null ?
-                        String.format("%s %s", entity.getCrew().getFirstName(), entity.getCrew().getLastName()) : null)
-                .shipName(entity.getShip() != null ? entity.getShip().getName() : null)
+                .taskId(entity.getTask() != null ? entity.getTask().getId() : 0L)
+                .crewId(entity.getCrew() != null ? entity.getCrew().getId() : 0L)
+                .crewId(entity.getCrew() != null ? entity.getCrew().getId() : 0L)
+                .shipId(entity.getShip() != null ? entity.getShip().getId() : 0L)
                 .assignDate(formatDate(entity.getAssignedDate()))
                 .deadlineDate(formatDate(entity.getDeadlineDate()))
                 .completed(entity.isCompleted())
                 .build();
+
     }
 
     // Optional: Include related entity IDs in the DTO
-    public static TaskScheduleDto toDtoWithIds(TaskSchedule entity) {
+    public static TaskScheduleDto toDtoWithIds(TaskAssignment entity) {
         if (entity == null) {
             return null;
         }

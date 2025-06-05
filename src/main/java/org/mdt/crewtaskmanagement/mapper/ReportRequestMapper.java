@@ -3,13 +3,13 @@ package org.mdt.crewtaskmanagement.mapper;
 import org.mdt.crewtaskmanagement.dto.reportrequest.ReportRequestDto;
 import org.mdt.crewtaskmanagement.model.ReportRequest;
 import org.mdt.crewtaskmanagement.model.Crew;
-import org.mdt.crewtaskmanagement.model.TaskSchedule;
+import org.mdt.crewtaskmanagement.model.TaskAssignment;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ReportRequestMapper {
 
-    public static ReportRequest fromDto(ReportRequestDto dto, Crew crew, TaskSchedule taskSchedule) {
+    public static ReportRequest fromDto(ReportRequestDto dto, Crew crew, TaskAssignment taskSchedule) {
         if (dto == null) {
             return null;
         }
@@ -17,11 +17,10 @@ public class ReportRequestMapper {
         ReportRequest reportRequest = new ReportRequest();
         reportRequest.setTitle(dto.getTitle());
         reportRequest.setContent(dto.getContent());
+        reportRequest.setReportType(dto.getReportType());
         reportRequest.setRequestDate(parseDate(dto.getRequestDate()));
-        reportRequest.setApprovedDate(parseDate(dto.getApprovedDate()));
-        reportRequest.setApprovedBy(dto.getApprovedBy());
         reportRequest.setCrew(crew);
-        reportRequest.setTaskSchedule(taskSchedule);
+        reportRequest.setTaskAssignment(taskSchedule);
 
         // Only set ID if present in DTO (not 0)
         if (dto.getId() != 0L) {
@@ -40,9 +39,10 @@ public class ReportRequestMapper {
                 .id(entity.getId())
                 .title(entity.getTitle())
                 .content(entity.getContent())
+                .reportType(entity.getReportType())
+                .crewId(entity.getCrew().getId())
+                .t_a_id(entity.getTaskAssignment().getId())
                 .requestDate(formatDate(entity.getRequestDate()))
-                .approvedDate(formatDate(entity.getApprovedDate()))
-                .approvedBy(entity.getApprovedBy())
                 .build();
     }
 

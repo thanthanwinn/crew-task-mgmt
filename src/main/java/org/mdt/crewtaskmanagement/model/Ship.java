@@ -27,8 +27,10 @@ public class Ship extends Auditable {
     @ManyToOne
     private Company company;
     @OneToMany(mappedBy = "ship")
-    private List<TaskSchedule> taskSchedules;
+    private List<TaskAssignment> taskSchedules;
     @OneToMany(mappedBy = "ship")
     private List<Material> materials = new ArrayList<>();
+
+
 
 }

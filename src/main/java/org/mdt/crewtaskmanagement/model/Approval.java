@@ -17,11 +17,15 @@ public class Approval {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String approverName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crew_id")
+    private Crew crew;
+
+    @Enumerated(EnumType.STRING)
     private CrewRank position;
+
     private LocalDateTime approvalTimestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "approval_log_id")
-    private ApprovalLog approvalLog;
+    private ReportRequest reportRequest;
 }

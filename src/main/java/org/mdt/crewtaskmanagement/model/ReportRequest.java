@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -21,11 +21,22 @@ public class ReportRequest {
     @ManyToOne
     private Crew crew;
     private String content;
+
     @OneToOne
-    private TaskSchedule taskSchedule;
+    private TaskAssignment taskAssignment;
+    private String reportType;
     private LocalDate requestDate;
-    private LocalDate approvedDate;
-    private String approvedBy;
-    @OneToOne
-    private ApprovalLog approvalLogs;
+    @OneToMany(mappedBy = "reportRequest")
+   private List<Approval> approvals;
+
+    @OneToMany(mappedBy = "reportRequest", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<MaterialReportRequest> materialReportRequest= new ArrayList<>();
+
+    public void addApproval(Approval approval) {
+
+        approval.setReportRequest(this);
+        approvals.add(approval);
+    }
+
+
 }

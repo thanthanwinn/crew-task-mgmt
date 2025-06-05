@@ -10,6 +10,7 @@ public class ShipDto {
     private long id;
     private String name;
     private String imoNumber;
+    private long companyId;
     private String flag;
     private String type;
     private String yearBuilt;

@@ -10,8 +10,10 @@ import java.time.LocalDate;
 public class ReportRequestDto {
     private long id;
     private String title;
-    private String content;
-    private String requestDate;
-    private String approvedDate;
-    private String approvedBy;
+    private long crewId;
+    private long t_a_id;
+    private String reportType;//user enter
+    private String content; //user enter
+    private String requestDate; //user enter
+
 }

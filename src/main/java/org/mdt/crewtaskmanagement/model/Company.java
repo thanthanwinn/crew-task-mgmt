@@ -18,6 +18,7 @@ public class Company extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Column(nullable = false)
     private String registeredBy;
     private String companyAddress;
     private String companyEmail;
@@ -26,4 +27,9 @@ public class Company extends Auditable {
     private String companyFax;
     @OneToMany
     private List<Ship> ships = new ArrayList<>();
+
+    public void addShip(Ship ship) {
+        ship.setCompany(this);
+        ships.add(ship);
+    }
 }

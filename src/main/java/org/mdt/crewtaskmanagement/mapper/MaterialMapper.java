@@ -17,6 +17,7 @@ public class MaterialMapper {
         Material material = new Material();
         material.setSerialNo(dto.getSerialNo());
         material.setName(dto.getName());
+        material.setQuantity(dto.getQuantity());
         material.setDescription(dto.getDescription());
         material.setUseStatus(dto.isUseStatus());
         material.setManufacturer(dto.getManufacturer());
@@ -44,6 +45,7 @@ public class MaterialMapper {
                 .id(entity.getId())
                 .serialNo(entity.getSerialNo())
                 .name(entity.getName())
+                .quantity(entity.getQuantity())
                 .description(entity.getDescription())
                 .useStatus(entity.isUseStatus())
                 .manufacturer(entity.getManufacturer())

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/material")
@@ -34,6 +34,18 @@ public class MaterialController {
     public ResponseEntity<List<MaterialDto>> getAllMaterials() {
         return ResponseEntity.ok(materialService.getAllMaterials());
     }
+
+
+    @PutMapping("/add-quantity/{materialId}/{quantity}")
+    public ResponseEntity<String> addMaterial(@PathVariable long materialId, @PathVariable int quantity) {
+        return ResponseEntity.ok(materialService.addMaterial(materialId, quantity));
+    }
+    @PutMapping("/reduce-quantity/{materialId}/{quantity}")
+    public ResponseEntity<String> reduceMaterial(@PathVariable long materialId, @PathVariable int quantity) {
+        return ResponseEntity.ok(materialService.reduceQuantity(materialId, quantity));
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMaterialById(@PathVariable("id") long id) {

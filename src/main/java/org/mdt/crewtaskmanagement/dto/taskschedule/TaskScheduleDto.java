@@ -7,9 +7,9 @@ import lombok.Data;
 @Builder
 public class TaskScheduleDto {
     private long id;
-    private String taskName;
-    private String crewName;
-    private String shipName;
+    private long taskId;
+    private long crewId;
+    private long shipId;
     private String assignDate;
     private String deadlineDate;
     private boolean completed;

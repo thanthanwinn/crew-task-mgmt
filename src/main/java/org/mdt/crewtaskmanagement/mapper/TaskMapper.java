@@ -40,14 +40,11 @@ public class TaskMapper {
                 .build();
     }
 
-    // Optional: Include task schedules count in the DTO
     public static TaskDto toDtoWithScheduleCount(Task entity) {
         if (entity == null) {
             return null;
         }
-
         TaskDto dto = toDto(entity);
-        // Add schedule count if needed
         return dto;
     }
 }

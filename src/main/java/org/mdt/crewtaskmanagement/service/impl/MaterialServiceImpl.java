@@ -37,7 +37,28 @@ public class MaterialServiceImpl {
         return materialRepository.findAll().stream().map(MaterialMapper::toDto).collect(Collectors.toList());
     }
 
+    public String addMaterial(long materialId, int quantity){
+        Material material = materialRepository.findById(materialId).orElseThrow();
+        int newQuantity = quantity + material.getQuantity();
+        material.setQuantity(newQuantity);
+        materialRepository.save(material);
+         var r =quantity + material.getName()  + "are added  .. so final quantity is " + newQuantity;
+        System.out.println(r);
+        return r;
+    }
+    public String reduceQuantity(long materialId, int quantity){
+        Material material = materialRepository.findById(materialId).orElseThrow();
+        int newQuantity = material.getQuantity() - quantity;
+        material.setQuantity(newQuantity);
+        materialRepository.save(material);
+        var r =  quantity + material.getName()  + "are reduced .. so final quantity is " + newQuantity;
+        System.out.println(r);
+        return r;
+    }
+
     public void deleteMaterialById(long id){
         materialRepository.deleteById(id);
     }
+
+
 }

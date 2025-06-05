@@ -2,17 +2,20 @@ package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crew.CrewDto;
+import org.mdt.crewtaskmanagement.dto.crewAssignment.CrewAssignmentDto;
 import org.mdt.crewtaskmanagement.service.CrewService;
+import org.mdt.crewtaskmanagement.service.impl.CrewAssignmentServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/crew")
 public class CrewController {
     private final CrewService crewService;
+    private final CrewAssignmentServiceImpl crewAssignmentService;
 
     @PostMapping("/register")
     public ResponseEntity<CrewDto> registerCrew(@RequestBody CrewDto crewDto) {
@@ -39,9 +42,15 @@ public class CrewController {
         crewService.deleteCrew(id);
         return ResponseEntity.ok("Deleted crew with id " + id);
     }
+    @PostMapping("/assign-crew")
+    public ResponseEntity<CrewAssignmentDto> createCrewAssignment(@RequestBody CrewAssignmentDto dto) {
+        System.out.println(dto.getCrewId() + " fdfdf" + dto.getShipId());
+        return ResponseEntity.ok(crewAssignmentService.addCrewAssignment(dto));
+    }
 
 //    @GetMapping("/company/{companyId}")
 //    public ResponseEntity<List<CrewDto>> getCrewsByCompanyId(@PathVariable("companyId") long companyId) {
 //        return ResponseEntity.ok(crewService.getCrewsByCompanyId(companyId));
 //    }
+
 }

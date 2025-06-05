@@ -11,21 +11,18 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TaskSchedule {
+public class CrewAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
-    private Task task;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crew_id")
     private Crew crew;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ship_id")
     private Ship ship;
-    private LocalDate assignedDate;
-    private LocalDate deadlineDate;
-    private boolean completed;
-    @OneToOne
-    private ReportRequest reportRequest;
 
+    private String position;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }

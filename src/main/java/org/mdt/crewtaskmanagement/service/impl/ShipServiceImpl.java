@@ -3,7 +3,9 @@ package org.mdt.crewtaskmanagement.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.ship.ShipDto;
 import org.mdt.crewtaskmanagement.mapper.ShipMapper;
+import org.mdt.crewtaskmanagement.model.Company;
 import org.mdt.crewtaskmanagement.model.Ship;
+import org.mdt.crewtaskmanagement.repository.CompanyRepository;
 import org.mdt.crewtaskmanagement.repository.ShipRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +18,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ShipServiceImpl {
     private final ShipRepository shipRepository;
+    private final CompanyRepository companyRepository;
 
     public ShipDto registerShip(ShipDto shipDto){
         Ship ship = ShipMapper.fromDto(shipDto);
+        Company company = companyRepository.findById(shipDto.getCompanyId()).orElseThrow();
+        ship.setCompany(company);
         Ship savedShip = shipRepository.save(ship);
         return ShipMapper.toDto(savedShip);
     }

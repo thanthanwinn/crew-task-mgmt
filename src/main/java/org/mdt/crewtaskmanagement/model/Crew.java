@@ -1,5 +1,6 @@
 package org.mdt.crewtaskmanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.mdt.crewtaskmanagement.model.type.CrewRank;
@@ -26,7 +27,9 @@ public class Crew  extends Auditable{
     private String lastName;
     private Gender gender;
     private String phone;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate birthDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate joinedDate;
     private boolean active;
     @Enumerated(EnumType.STRING)
@@ -38,13 +41,16 @@ public class Crew  extends Auditable{
     private String emergencyEmail;
     private String photoUrl;
     private String certificates;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate certificatesExpiry;
     private String licenseNo;
     private String licenseExpiry;
     @OneToMany(mappedBy = "crew")
     private List<ReportRequest> reportRequests;
     @OneToMany(mappedBy = "crew")
-    private List<TaskSchedule> taskSchedules = new ArrayList<>();
+    private List<TaskAssignment> taskSchedules = new ArrayList<>();
+    @OneToMany(mappedBy = "crew", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<CrewAssignment> crewAssignments = new ArrayList<>();
 
 
 

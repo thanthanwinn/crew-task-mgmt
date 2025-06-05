@@ -20,10 +20,10 @@ public class Task {
     private String title;
     private String position;
     private String description;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Category category;
     @OneToMany(mappedBy = "task")
-    private List<TaskSchedule> taskSchedules = new ArrayList<>();
+    private List<TaskAssignment> taskSchedules = new ArrayList<>();
 
 
 

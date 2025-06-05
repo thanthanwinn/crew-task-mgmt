@@ -1,6 +1,7 @@
 package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.mdt.crewtaskmanagement.dto.task.CrewTaskDto;
 import org.mdt.crewtaskmanagement.dto.task.TaskDto;
 import org.mdt.crewtaskmanagement.service.TaskService;
 import org.mdt.crewtaskmanagement.service.impl.TaskServiceImpl;
@@ -8,12 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/task")
 public class TaskController {
     private final TaskServiceImpl taskService;
+
 
     @PostMapping("/register")
     public ResponseEntity<TaskDto> registerTask(@RequestBody TaskDto taskDto) {
@@ -37,7 +39,19 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTaskById(@PathVariable("id") long id) {
-        taskService.deleteTaskById(id);
+        taskService.deleteTask(id);
         return ResponseEntity.ok("Deleted task with id " + id);
     }
+    @GetMapping("/assign-task-to-crew/{crewId}/{taskId}")
+    public ResponseEntity<String> assignTaskToCrew(@PathVariable("taskId") long taskId, @PathVariable("crewId") long crewId) {
+        taskService.assignTaskToCrew(taskId, crewId);
+        return ResponseEntity.ok("Assigned task with id " + taskId + " to " + crewId);
+    }
+    @GetMapping("/get-task-by-crew-id/{crewId}")
+    public ResponseEntity<List<CrewTaskDto>> getCrewTaskById(@PathVariable("crewId") long crewId) {
+
+        var tasks = taskService.getTasksByCrewId(crewId);
+        return ResponseEntity.ok(tasks);
+    }
+
 }

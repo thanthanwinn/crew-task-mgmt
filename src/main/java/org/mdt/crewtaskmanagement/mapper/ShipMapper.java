@@ -39,6 +39,7 @@ public class ShipMapper {
         return ShipDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .companyId(entity.getCompany().getId())
                 .imoNumber(entity.getImoNumber())
                 .flag(entity.getFlag())
                 .type(entity.getType())

@@ -11,6 +11,8 @@ public class CrewDto {
     private long id;
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
     private String gender;
     private String phone;
     private String birthDate;
@@ -26,4 +28,5 @@ public class CrewDto {
     private String certificatesExpiry;
     private String licenseNo;
     private String licenseExpiry;
+    private String userType;
 }

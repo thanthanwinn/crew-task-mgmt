@@ -8,6 +8,8 @@ import lombok.Data;
 public class TaskDto {
     private long id;
     private String title;
+    private String position;
     private String description;
     private String category;
+    private String taskType;
 }

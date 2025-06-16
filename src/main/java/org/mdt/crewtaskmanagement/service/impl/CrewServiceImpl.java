@@ -47,4 +47,16 @@ public class CrewServiceImpl implements CrewService {
     public void deleteCrew(long id) {
         crewRepository.deleteById(id);
     }
+
+    @Override
+    public List<CrewDto> getCrewsForAssignments() {
+        return crewRepository.findAvailableCrewsForAssignment().stream().map(CrewMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CrewDto> getAllCrewsByShipId(long shipId) {
+        return crewRepository.findCrewsByShipId(shipId).stream().map(CrewMapper::toDto).collect(Collectors.toList());
+    }
+
+
 }

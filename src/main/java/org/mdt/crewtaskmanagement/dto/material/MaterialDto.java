@@ -12,11 +12,11 @@ public class MaterialDto {
     private long id;
     private String serialNo;
     private String name;
-    private int quantity;
+    private String type;
     private String description;
     private boolean useStatus;
     private String manufacturer;
-    private BigDecimal price;
+    private long price;
     private String condition;
     private String supplierInfo;
     private String receivedDate;

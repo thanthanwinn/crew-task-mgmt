@@ -24,4 +24,6 @@ public interface ReportRequestRepository extends JpaRepository<ReportRequest, Lo
 """)
     List<ReportRequest> getApprovedReportRequests(long crewId);
 
+
+
 }

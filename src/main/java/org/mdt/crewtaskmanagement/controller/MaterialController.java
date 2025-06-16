@@ -2,21 +2,27 @@ package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
+import org.mdt.crewtaskmanagement.dto.material.MaterialForRequestDto;
 import org.mdt.crewtaskmanagement.service.MaterialService;
 import org.mdt.crewtaskmanagement.service.impl.MaterialServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin("*")
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/material")
 public class MaterialController {
     private final MaterialServiceImpl materialService;
+    @GetMapping
+    public String hello(){
+        return "Hello Worlddfksadfkj;a ";
+    }
 
     @PostMapping("/register")
     public ResponseEntity<MaterialDto> registerMaterial(@RequestBody MaterialDto materialDto) {
+        System.out.println(materialDto + "material registering`");
         return ResponseEntity.ok(materialService.registerMaterial(materialDto));
     }
 
@@ -34,16 +40,20 @@ public class MaterialController {
     public ResponseEntity<List<MaterialDto>> getAllMaterials() {
         return ResponseEntity.ok(materialService.getAllMaterials());
     }
+    @GetMapping("/for-request")
+    public ResponseEntity<List<MaterialForRequestDto>>  getMaterialsForRequest(){
+        return ResponseEntity.ok(materialService.findMaterialForRequest());
+    }
 
 
-    @PutMapping("/add-quantity/{materialId}/{quantity}")
-    public ResponseEntity<String> addMaterial(@PathVariable long materialId, @PathVariable int quantity) {
-        return ResponseEntity.ok(materialService.addMaterial(materialId, quantity));
-    }
-    @PutMapping("/reduce-quantity/{materialId}/{quantity}")
-    public ResponseEntity<String> reduceMaterial(@PathVariable long materialId, @PathVariable int quantity) {
-        return ResponseEntity.ok(materialService.reduceQuantity(materialId, quantity));
-    }
+//    @PutMapping("/add-quantity/{materialId}/{quantity}")
+//    public ResponseEntity<String> addMaterial(@PathVariable long materialId, @PathVariable int quantity) {
+//        return ResponseEntity.ok(materialService.addMaterial(materialId, quantity));
+//    }
+//    @PutMapping("/reduce-quantity/{materialId}/{quantity}")
+//    public ResponseEntity<String> reduceMaterial(@PathVariable long materialId, @PathVariable int quantity) {
+//        return ResponseEntity.ok(materialService.reduceQuantity(materialId, quantity));
+//    }
 
 
 

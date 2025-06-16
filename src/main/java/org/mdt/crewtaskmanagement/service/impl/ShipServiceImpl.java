@@ -30,6 +30,8 @@ public class ShipServiceImpl {
 
     public ShipDto updateShip(ShipDto shipDto){
         Ship ship = ShipMapper.fromDto(shipDto);
+        Company company = companyRepository.findById(shipDto.getCompanyId()).orElseThrow();
+        ship.setCompany(company);
         Ship savedShip = shipRepository.save(ship);
         savedShip.setId(ship.getId());
         return ShipMapper.toDto(savedShip);

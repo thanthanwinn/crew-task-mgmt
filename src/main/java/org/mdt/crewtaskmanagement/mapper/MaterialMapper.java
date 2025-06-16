@@ -17,7 +17,8 @@ public class MaterialMapper {
         Material material = new Material();
         material.setSerialNo(dto.getSerialNo());
         material.setName(dto.getName());
-        material.setQuantity(dto.getQuantity());
+        material.setCondition(dto.getCondition());
+        material.setType(dto.getType());
         material.setDescription(dto.getDescription());
         material.setUseStatus(dto.isUseStatus());
         material.setManufacturer(dto.getManufacturer());
@@ -25,7 +26,7 @@ public class MaterialMapper {
         material.setCondition(dto.getCondition());
         material.setSupplierInfo(dto.getSupplierInfo());
         material.setReceivedDate(parseDate(dto.getReceivedDate()));
-        material.setLifeTime(parseDate(dto.getLifeTime()));
+        material.setLifeTime(dto.getLifeTime());
 
 
         // Only set ID if present in DTO (not 0)
@@ -45,7 +46,8 @@ public class MaterialMapper {
                 .id(entity.getId())
                 .serialNo(entity.getSerialNo())
                 .name(entity.getName())
-                .quantity(entity.getQuantity())
+                .type(entity.getType())
+                .condition(entity.getCondition())
                 .description(entity.getDescription())
                 .useStatus(entity.isUseStatus())
                 .manufacturer(entity.getManufacturer())
@@ -53,7 +55,7 @@ public class MaterialMapper {
                 .condition(entity.getCondition())
                 .supplierInfo(entity.getSupplierInfo())
                 .receivedDate(formatDate(entity.getReceivedDate()))
-                .lifeTime(formatDate(entity.getLifeTime()))
+                .lifeTime(entity.getLifeTime())
                 .build();
     }
 

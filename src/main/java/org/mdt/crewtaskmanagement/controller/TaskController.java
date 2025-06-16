@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin("*")
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/task")
@@ -19,6 +19,7 @@ public class TaskController {
 
     @PostMapping("/register")
     public ResponseEntity<TaskDto> registerTask(@RequestBody TaskDto taskDto) {
+        System.out.println(taskDto+ "taskDto");
         return ResponseEntity.ok(taskService.registerTask(taskDto));
     }
 

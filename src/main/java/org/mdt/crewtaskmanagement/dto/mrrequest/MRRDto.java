@@ -9,5 +9,5 @@ public class MRRDto {
     private long id;
     private long materialId;
     private long reportRequestId;
-    private int quantity;
+
 }

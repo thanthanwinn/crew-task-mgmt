@@ -24,18 +24,17 @@ public class Material extends Auditable {
     private String serialNo;
     private String name;
     private String description;
+    private String type;
     private boolean useStatus;
     private String manufacturer;
-    private BigDecimal price;
+    private long price;
     @Column(name = "material_condition")
     private String condition;
     private String supplierInfo;
     private LocalDate receivedDate;
-    private LocalDate lifeTime;
+    private String lifeTime;
     @ManyToOne
     private Ship ship ;
-    @ManyToOne
-    private ReportRequest report;
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<MaterialReportRequest> materialReportRequest= new ArrayList<>();

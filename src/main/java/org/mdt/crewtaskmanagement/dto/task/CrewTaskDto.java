@@ -7,7 +7,8 @@ import lombok.Data;
 public class CrewTaskDto {
     private int id;
     private long crewId;
-    private String crewName;
+    private String crewFirstName;
+    private String crewLastName;
     private String shipName;
     private long taskId;
     private String taskTitle;

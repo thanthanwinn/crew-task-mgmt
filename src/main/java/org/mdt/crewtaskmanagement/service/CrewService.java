@@ -11,5 +11,7 @@ public interface CrewService {
     public CrewDto getCrewById(long id);
     public List<CrewDto> getAllCrews();
     public void deleteCrew(long id);
+    List<CrewDto> getCrewsForAssignments();
+    List<CrewDto> getAllCrewsByShipId(long shipId);
 
 }

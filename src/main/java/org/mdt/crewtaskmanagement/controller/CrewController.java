@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin("*")
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mdt/crew")
@@ -47,6 +47,15 @@ public class CrewController {
         System.out.println(dto.getCrewId() + " fdfdf" + dto.getShipId());
         return ResponseEntity.ok(crewAssignmentService.addCrewAssignment(dto));
     }
+    @GetMapping("/get-crews-for-assignment")
+    public ResponseEntity<List<CrewDto>> getAllCrewForAssignments() {
+        return ResponseEntity.ok(crewService.getCrewsForAssignments());
+    }
+    @GetMapping("/ship/{shipId}")
+    public ResponseEntity<List<CrewDto>> getCrewsByShipId(@PathVariable long shipId) {
+        return ResponseEntity.ok(crewService.getAllCrewsByShipId(shipId));
+    }
+
 
 //    @GetMapping("/company/{companyId}")
 //    public ResponseEntity<List<CrewDto>> getCrewsByCompanyId(@PathVariable("companyId") long companyId) {

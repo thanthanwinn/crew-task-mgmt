@@ -2,12 +2,15 @@ package org.mdt.crewtaskmanagement.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
+import org.mdt.crewtaskmanagement.dto.material.MaterialForRequestDto;
 import org.mdt.crewtaskmanagement.mapper.MaterialMapper;
 import org.mdt.crewtaskmanagement.model.Material;
 import org.mdt.crewtaskmanagement.repository.MaterialRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +33,11 @@ public class MaterialServiceImpl {
         return MaterialMapper.toDto(material);
     }
 
+    public List<MaterialForRequestDto> findMaterialForRequest(){
+        List<MaterialForRequestDto>  materials = materialRepository.findAllMaterialsForRequest();
+        return materials;
+    }
+
     public MaterialDto getMaterialById(long id){
         return MaterialMapper.toDto( materialRepository.findById(id).orElseThrow());
     }
@@ -37,24 +45,25 @@ public class MaterialServiceImpl {
         return materialRepository.findAll().stream().map(MaterialMapper::toDto).collect(Collectors.toList());
     }
 
-    public String addMaterial(long materialId, int quantity){
-        Material material = materialRepository.findById(materialId).orElseThrow();
-        int newQuantity = quantity + material.getQuantity();
-        material.setQuantity(newQuantity);
-        materialRepository.save(material);
-         var r =quantity + material.getName()  + "are added  .. so final quantity is " + newQuantity;
-        System.out.println(r);
-        return r;
-    }
-    public String reduceQuantity(long materialId, int quantity){
-        Material material = materialRepository.findById(materialId).orElseThrow();
-        int newQuantity = material.getQuantity() - quantity;
-        material.setQuantity(newQuantity);
-        materialRepository.save(material);
-        var r =  quantity + material.getName()  + "are reduced .. so final quantity is " + newQuantity;
-        System.out.println(r);
-        return r;
-    }
+//    public String addMaterial(long materialId, int quantity){
+//        Material material = materialRepository.findById(materialId).orElseThrow();
+//        int newQuantity = quantity + material.getQuantity();
+//        material.setQuantity(newQuantity);
+//        materialRepository.save(material);
+//         var r =quantity + material.getName()  + "are added  .. so final quantity is " + newQuantity;
+//        System.out.println(r);
+//        return r;
+//    }
+//    public String reduceQuantity(long materialId, int quantity){
+//        Material material = materialRepository.findById(materialId).orElseThrow();
+//        int newQuantity = material.getQuantity() - quantity;
+//        BigDecimal d = new BigDecimal(newQuantity);
+//        material.setQuantity(newQuantity);
+//        materialRepository.save(material);
+//        var r =  quantity + material.getName()  + "are reduced .. so final quantity is " + newQuantity;
+//        System.out.println(r);
+//        return r;
+//    }
 
     public void deleteMaterialById(long id){
         materialRepository.deleteById(id);

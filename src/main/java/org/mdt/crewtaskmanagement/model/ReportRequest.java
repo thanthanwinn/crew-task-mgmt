@@ -27,16 +27,19 @@ public class ReportRequest {
     private String reportType;
     private LocalDate requestDate;
     @OneToMany(mappedBy = "reportRequest")
-   private List<Approval> approvals;
+    private List<Approval> approvals;
 
     @OneToMany(mappedBy = "reportRequest", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<MaterialReportRequest> materialReportRequest= new ArrayList<>();
+    private List<MaterialReportRequest> materialReportRequests= new ArrayList<>();
 
     public void addApproval(Approval approval) {
 
         approval.setReportRequest(this);
         approvals.add(approval);
     }
-
+    public void addMaterialReportRequest(MaterialReportRequest materialReportRequest) {
+        materialReportRequest.setReportRequest(this);
+        materialReportRequests.add(materialReportRequest);
+    }
 
 }

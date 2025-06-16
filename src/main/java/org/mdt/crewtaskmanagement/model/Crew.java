@@ -6,25 +6,25 @@ import lombok.*;
 import org.mdt.crewtaskmanagement.model.type.CrewRank;
 import org.mdt.crewtaskmanagement.model.type.Gender;
 import org.mdt.crewtaskmanagement.model.type.Section;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "crew")
-public class Crew  extends Auditable{
+public class Crew  extends User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String firstName;
-    private String lastName;
+    private Long id;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String phone;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

@@ -5,18 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class MaterialReportRequest {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @ManyToOne
-    @JoinColumn(name = "material_id")
-    private Material material;
-    @ManyToOne
-    @JoinColumn(name = "report_request_id")
-    private ReportRequest reportRequest;
+    private int id;
+    private String roleName;
+
 }

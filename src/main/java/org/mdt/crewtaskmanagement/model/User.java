@@ -20,6 +20,7 @@ public class User extends Auditable {
     private String firstName;
     private String lastName;
     private String password;
+    @Column(unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)

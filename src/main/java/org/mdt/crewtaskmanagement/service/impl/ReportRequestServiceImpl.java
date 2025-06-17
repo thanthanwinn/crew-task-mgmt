@@ -2,6 +2,7 @@ package org.mdt.crewtaskmanagement.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.approval.ApprovalDto;
+import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoOutput;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
 import org.mdt.crewtaskmanagement.dto.reportrequest.ReportRequestDto;
 import org.mdt.crewtaskmanagement.mapper.MaterialMapper;
@@ -95,6 +96,19 @@ public class ReportRequestServiceImpl implements ReportRequestService {
         return reportRequests.stream()
                 .map(r -> ReportRequestMapper.toDto(r))
                 .collect(Collectors.toList());
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 //   @Override
@@ -169,5 +183,15 @@ public class ReportRequestServiceImpl implements ReportRequestService {
            }
         }
         return ReportRequestMapper.toDto(currentReport);
+    }
+
+    public List<ApprovalDtoOutput> getApprovalsForReportRequest(long reportRequestId) {
+        var approvals = approvalRepository.getApprovalsByReportRequestId(reportRequestId);
+        List<ApprovalDtoOutput> approvalDtos = new ArrayList<>();
+        approvals.stream()
+                .map(ap -> new ApprovalDtoOutput(ap.getId(),ap.getReportRequest().getCrew().getFirstName(), ap.getApprovalTimestamp(),ap.getReportRequest().getId(),ap.getCrew().getLastName(),ap.getCrew().getCrewRank().toString()))
+                .forEach(approvalDtos::add);
+
+        return approvalDtos;
     }
 }

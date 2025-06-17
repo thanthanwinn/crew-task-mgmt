@@ -17,6 +17,7 @@ import org.mdt.crewtaskmanagement.service.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class TaskServiceImpl implements TaskService {
     public List<CrewTaskDto> getTasksByCrewId(long crewId) {
         List<TaskAssignment> assignments = tsrepo.findByCrewIdWithDetails(crewId);
         return assignments.stream()
+                .sorted(Comparator.comparing(TaskAssignment::getDeadlineDate))
                 .map(CrewTaskMapper::toDto)
                 .collect(Collectors.toList());
     }

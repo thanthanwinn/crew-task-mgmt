@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MaterialServiceImpl {
+public class MaterialServiceImpl  {
     private final MaterialRepository materialRepository;
 
     public MaterialDto registerMaterial(MaterialDto dto){
@@ -31,6 +31,10 @@ public class MaterialServiceImpl {
         material.setId(dto.getId());
         materialRepository.save(material);
         return MaterialMapper.toDto(material);
+    }
+
+    public List<MaterialForRequestDto> getAllMaterialsFromReportRequest(long reportRequestId){
+       return materialRepository.findAllMaterialsFromRequest(reportRequestId);
     }
 
     public List<MaterialForRequestDto> findMaterialForRequest(){

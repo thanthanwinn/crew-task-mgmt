@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,18 +73,38 @@ public class AuthService {
     @Transactional
     public String registerCrewByAdmin(CrewDto dto) {
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+        Role userRole;
+        switch (dto.getCrewRank().toLowerCase()) {
+            case "first":
+                userRole = roleDao.findByRoleName("FIRST_LEADER").orElseThrow();
+                break;
+            case "second":
+                userRole = roleDao.findByRoleName("SECOND_LEADER").orElseThrow();
+                break;
+            case "third":
+                userRole = roleDao.findByRoleName("THIRD_LEADER").orElseThrow();
+                break;
+            case "general":
+                userRole = roleDao.findByRoleName("WORKER").orElseThrow();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid crew rank: " + dto.getCrewRank());
+        }
 
-        String role = dto.getUserType();
-        Role userRole = roleDao.findByRoleName(role)
-                .orElseGet(() -> {
-                    Role r = new Role();
-                    r.setRoleName(role);
-                    return roleDao.save(r);
-                });
+        // Ensure the Crew has an ID if you're updating
+
+
+        // Make sure roles are properly initialized
+
+
+
 
         Crew crew = CrewMapper.fromDto(dto);
-        crew.addRole(userRole);
-
+        if (crew.getRoles() == null) {
+            crew.setRoles(new HashSet<>());
+            crew.getRoles().add(userRole);
+            crew.addRole(userRole);
+        }
         crewRepository.save(crew);
 
         return "Crew registered successfully by Admin";

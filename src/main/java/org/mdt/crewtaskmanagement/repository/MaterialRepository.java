@@ -35,6 +35,24 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 """)
     List<MaterialForRequestDto> findAllMaterialsForRequest();
 
+    @Query("""
+    SELECT new org.mdt.crewtaskmanagement.dto.material.MaterialForRequestDto(
+        MIN(mrr.material.id),          
+        mrr.material.name,
+        MIN(mrr.material.type),
+        MIN(mrr.material.price),
+        MIN(mrr.material.condition),
+        MIN(mrr.material.receivedDate),
+        MIN(mrr.material.lifeTime),
+        COUNT(mrr.material)
+    )
+    FROM MaterialReportRequest mrr
+    
+    WHERE mrr.reportRequest.id = :reportRequestId
+    GROUP BY mrr.material.name
+""")
+    List<MaterialForRequestDto> findAllMaterialsFromRequest(@Param("reportRequestId")Long reportRequestId);
+
 
 
 

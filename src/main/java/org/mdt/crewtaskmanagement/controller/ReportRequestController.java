@@ -2,6 +2,7 @@ package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.approval.ApprovalDto;
+import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoOutput;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
 import org.mdt.crewtaskmanagement.dto.reportrequest.ReportRequestDto;
 import org.mdt.crewtaskmanagement.model.Material;
@@ -22,6 +23,7 @@ import java.util.List;
 @RequestMapping("/mdt/report")
 public class ReportRequestController {
     private final ReportRequestServiceImpl reportRequestService;
+
 
     @PostMapping("/create")
     public ResponseEntity<ReportRequestDto> createReportRequest(@RequestBody ReportRequestDto reportRequestDto) {
@@ -54,5 +56,9 @@ public class ReportRequestController {
     @GetMapping("/get-pendings/{crewId}")
     public List<ReportRequestDto> getAllReportRequests(@PathVariable Long crewId) {
         return reportRequestService.getPendingReportRequests(crewId);
+    }
+    @GetMapping("/get-approvals/{reportRequestId}")
+    public List<ApprovalDtoOutput> getAllApprovalsFromReportRequestById(@PathVariable Long reportRequestId) {
+        return reportRequestService.getApprovalsForReportRequest(reportRequestId);
     }
 }

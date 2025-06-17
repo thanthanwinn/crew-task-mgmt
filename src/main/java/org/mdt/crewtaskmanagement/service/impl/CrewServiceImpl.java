@@ -4,11 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crew.CrewDto;
 import org.mdt.crewtaskmanagement.mapper.CrewMapper;
 import org.mdt.crewtaskmanagement.model.Crew;
+import org.mdt.crewtaskmanagement.model.Role;
 import org.mdt.crewtaskmanagement.repository.CrewRepository;
+import org.mdt.crewtaskmanagement.repository.RoleRepository;
 import org.mdt.crewtaskmanagement.service.CrewService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,19 +21,30 @@ import java.util.stream.Collectors;
 @Transactional
 public class CrewServiceImpl implements CrewService {
     private final CrewRepository crewRepository;
+    private final RoleRepository roleDao;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public CrewDto registerCrew(CrewDto dto) {
          Crew crew = CrewMapper.fromDto(dto);
+
         return CrewMapper.toDto(crewRepository.save(crew));
     }
 
     @Override
     public CrewDto updateCrew(CrewDto dto) {
-        Crew  c = CrewMapper.fromDto(dto);
-        c.setId(dto.getId());
-        return CrewMapper.toDto(crewRepository.save(c));
+        Crew crew = crewRepository.findById(dto.getId()).orElseThrow();
+
+        Crew c = CrewMapper.fromDto(dto);
+        if(c.getPassword().isBlank()){
+            c.setPassword(passwordEncoder.encode("12345"));
+        }else{
+            c.setPassword(crew.getPassword());
+        }
+        c.setId(crew.getId());
+        return CrewMapper.toDto(crewRepository.saveAndFlush(c));
     }
+
 
     @Override
     public CrewDto getCrewById(long id) {

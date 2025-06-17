@@ -44,6 +44,10 @@ public class MaterialController {
     public ResponseEntity<List<MaterialForRequestDto>>  getMaterialsForRequest(){
         return ResponseEntity.ok(materialService.findMaterialForRequest());
     }
+    @GetMapping("/from-request/{reportRequestId}")
+    public ResponseEntity<List<MaterialForRequestDto>> getMaterialsFromRequest(@PathVariable long reportRequestId){
+        return ResponseEntity.ok(materialService.getAllMaterialsFromReportRequest(reportRequestId));
+    }
 
 
 //    @PutMapping("/add-quantity/{materialId}/{quantity}")

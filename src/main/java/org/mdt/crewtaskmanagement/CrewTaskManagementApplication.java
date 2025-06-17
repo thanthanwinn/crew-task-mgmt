@@ -19,7 +19,7 @@ public class CrewTaskManagementApplication {
     private final RoleRepository roleRepository;
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
-    @Bean
+    @Bean @Profile("dev")
     public ApplicationRunner init() {
         return args -> {
            Admin admin = new Admin();
@@ -40,7 +40,7 @@ public class CrewTaskManagementApplication {
 
     @Bean
     @Transactional
-   // @Profile("dev")
+    @Profile("dev")
     public ApplicationRunner runner() {
         return args -> {
 

@@ -1,8 +1,7 @@
 package org.mdt.crewtaskmanagement.service;
 
-import org.mdt.crewtaskmanagement.dto.task.CrewTaskDto;
+import org.mdt.crewtaskmanagement.dto.task.CrewTaskDtoOutPut;
 import org.mdt.crewtaskmanagement.dto.task.TaskDto;
-import org.mdt.crewtaskmanagement.model.Task;
 
 import java.util.List;
 
@@ -13,6 +12,6 @@ public interface TaskService {
     public List<TaskDto> getAllTasks();
     public void deleteTask(long id);
     public void assignTaskToCrew(long taskId, long crewId);
-    public List<CrewTaskDto> getTasksByCrewId(long crewId);
+    public List<CrewTaskDtoOutPut> getTasksByCrewId(long crewId);
 
 }

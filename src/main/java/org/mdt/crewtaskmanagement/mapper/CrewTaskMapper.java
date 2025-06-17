@@ -1,14 +1,14 @@
 package org.mdt.crewtaskmanagement.mapper;
 
-import org.mdt.crewtaskmanagement.dto.task.CrewTaskDto;
+import org.mdt.crewtaskmanagement.dto.task.CrewTaskDtoOutPut;
 import org.mdt.crewtaskmanagement.model.TaskAssignment;
 
 public class CrewTaskMapper {
 
-    public static CrewTaskDto toDto(TaskAssignment entity) {
+    public static CrewTaskDtoOutPut toDto(TaskAssignment entity) {
         if (entity == null) return null;
 
-        return CrewTaskDto.builder()
+        return CrewTaskDtoOutPut.builder()
                 .id((int) entity.getId())
                 .crewId(entity.getCrew().getId())
                 .crewFirstName(entity.getCrew().getFirstName())

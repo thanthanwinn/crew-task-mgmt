@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 @Builder
 @Data
-public class CrewTaskDto {
+public class CrewTaskDtoOutPut {
     private int id;
     private long crewId;
     private String crewFirstName;

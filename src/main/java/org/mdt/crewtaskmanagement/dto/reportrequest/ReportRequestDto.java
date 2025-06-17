@@ -2,9 +2,7 @@ package org.mdt.crewtaskmanagement.dto.reportrequest;
 
 import lombok.Builder;
 import lombok.Data;
-import org.mdt.crewtaskmanagement.dto.approval.ApprovalDto;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Data

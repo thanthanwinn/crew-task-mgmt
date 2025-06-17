@@ -1,9 +1,8 @@
 package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.dto.task.CrewTaskDto;
+import org.mdt.crewtaskmanagement.dto.task.CrewTaskDtoOutPut;
 import org.mdt.crewtaskmanagement.dto.task.TaskDto;
-import org.mdt.crewtaskmanagement.service.TaskService;
 import org.mdt.crewtaskmanagement.service.impl.TaskServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +48,7 @@ public class TaskController {
         return ResponseEntity.ok("Assigned task with id " + taskId + " to " + crewId);
     }
     @GetMapping("/get-task-by-crew-id/{crewId}")
-    public ResponseEntity<List<CrewTaskDto>> getCrewTaskById(@PathVariable("crewId") long crewId) {
+    public ResponseEntity<List<CrewTaskDtoOutPut>> getCrewTaskById(@PathVariable("crewId") long crewId) {
 
         var tasks = taskService.getTasksByCrewId(crewId);
         return ResponseEntity.ok(tasks);

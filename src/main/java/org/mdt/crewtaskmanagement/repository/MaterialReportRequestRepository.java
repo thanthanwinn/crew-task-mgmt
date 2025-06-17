@@ -1,6 +1,5 @@
 package org.mdt.crewtaskmanagement.repository;
 
-import org.mdt.crewtaskmanagement.dto.mrrequest.MRRDto;
 import org.mdt.crewtaskmanagement.model.Material;
 import org.mdt.crewtaskmanagement.model.MaterialReportRequest;
 import org.springframework.data.jpa.repository.JpaRepository;

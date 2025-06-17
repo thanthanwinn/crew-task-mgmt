@@ -19,8 +19,6 @@ public class TaskScheduleMapper {
         taskSchedule.setAssignedDate(parseDate(dto.getAssignDate()));
         taskSchedule.setDeadlineDate(parseDate(dto.getDeadlineDate()));
         taskSchedule.setCompleted(dto.isCompleted());
-
-        // Only set ID if present in DTO (not 0)
         if (dto.getId() != 0L) {
             taskSchedule.setId(dto.getId());
         }

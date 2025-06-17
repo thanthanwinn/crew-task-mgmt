@@ -1,7 +1,7 @@
 package org.mdt.crewtaskmanagement.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.dto.task.CrewTaskDto;
+import org.mdt.crewtaskmanagement.dto.task.CrewTaskDtoOutPut;
 import org.mdt.crewtaskmanagement.dto.task.TaskDto;
 import org.mdt.crewtaskmanagement.mapper.CrewTaskMapper;
 import org.mdt.crewtaskmanagement.mapper.TaskMapper;
@@ -30,7 +30,7 @@ public class TaskServiceImpl implements TaskService {
     private final TaskScheduleRepository tsrepo;
 
     @Override
-    public List<CrewTaskDto> getTasksByCrewId(long crewId) {
+    public List<CrewTaskDtoOutPut> getTasksByCrewId(long crewId) {
         List<TaskAssignment> assignments = tsrepo.findByCrewIdWithDetails(crewId);
         return assignments.stream()
                 .sorted(Comparator.comparing(TaskAssignment::getDeadlineDate))

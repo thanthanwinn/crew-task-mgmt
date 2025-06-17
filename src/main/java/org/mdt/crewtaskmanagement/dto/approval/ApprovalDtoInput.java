@@ -2,20 +2,16 @@ package org.mdt.crewtaskmanagement.dto.approval;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Data
-public class ApprovalDto {
+public class ApprovalDtoInput {
     private long id;
     private long crewId;
     private String approvedDate;
     private long reportRequestId;
 
-    public ApprovalDto(long id, long crewId, LocalDateTime approvedDate, long reportRequestId) {
+    public ApprovalDtoInput(long id, long crewId, long reportRequestId) {
         this.id = id;
         this.crewId = crewId;
-        this.approvedDate= approvedDate.toString();
         this.reportRequestId = reportRequestId;
     }
 }

@@ -1,7 +1,7 @@
 package org.mdt.crewtaskmanagement.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.dto.approval.ApprovalDto;
+import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoInput;
 import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoOutput;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
 import org.mdt.crewtaskmanagement.dto.reportrequest.ReportRequestDto;
@@ -10,9 +10,7 @@ import org.mdt.crewtaskmanagement.mapper.ReportRequestMapper;
 import org.mdt.crewtaskmanagement.model.*;
 import org.mdt.crewtaskmanagement.model.type.CrewRank;
 import org.mdt.crewtaskmanagement.repository.*;
-import org.mdt.crewtaskmanagement.service.MaterialService;
 import org.mdt.crewtaskmanagement.service.ReportRequestService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -112,12 +110,12 @@ public class ReportRequestServiceImpl implements ReportRequestService {
     }
 
 //   @Override
-    public void addApprovalForReportRequest( ApprovalDto approvalDto) {
-        ReportRequest reportRequest = reportRequestRepository.findById(approvalDto.getReportRequestId()).orElseThrow();
+    public void addApprovalForReportRequest( ApprovalDtoInput approvalDtoInput) {
+        ReportRequest reportRequest = reportRequestRepository.findById(approvalDtoInput.getReportRequestId()).orElseThrow();
 
         Approval approval = new Approval();
         approval.setApprovalTimestamp(LocalDateTime.now());
-        var crew =crewRepository.findById(approvalDto.getCrewId()).orElseThrow();
+        var crew =crewRepository.findById(approvalDtoInput.getCrewId()).orElseThrow();
         approval.setCrew(crew);
 
         approval.setPosition(CrewRank.valueOf(crew.getCrewRank().toString()));

@@ -1,21 +1,14 @@
 package org.mdt.crewtaskmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.dto.approval.ApprovalDto;
+import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoInput;
 import org.mdt.crewtaskmanagement.dto.approval.ApprovalDtoOutput;
 import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
 import org.mdt.crewtaskmanagement.dto.reportrequest.ReportRequestDto;
-import org.mdt.crewtaskmanagement.model.Material;
-import org.mdt.crewtaskmanagement.model.MaterialReportRequest;
-import org.mdt.crewtaskmanagement.model.ReportRequest;
-import org.mdt.crewtaskmanagement.service.ReportRequestService;
 import org.mdt.crewtaskmanagement.service.impl.ReportRequestServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,8 +35,8 @@ public class ReportRequestController {
         return ResponseEntity.ok(m);
 }
     @PostMapping("/add-approval")
-    public ResponseEntity<String> addApprovalToReportRequest(@RequestBody ApprovalDto approvalDto) {
-        reportRequestService.addApprovalForReportRequest(approvalDto);
+    public ResponseEntity<String> addApprovalToReportRequest(@RequestBody ApprovalDtoInput approvalDtoInput) {
+        reportRequestService.addApprovalForReportRequest(approvalDtoInput);
         return ResponseEntity.ok("Approved by ");
 
     }

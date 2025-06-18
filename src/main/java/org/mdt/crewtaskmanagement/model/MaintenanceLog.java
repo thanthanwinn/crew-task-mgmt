@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -19,4 +21,20 @@ public class MaintenanceLog {
     private String title;
     private String remark;
     private String maintainedBy;
+    private LocalDate maintainedDate;
+    private LocalDate nextDueDate;
+
+    @PrePersist
+    @PreUpdate
+    public void calculateNextDueDate() {
+        if (maintainedDate != null) {
+            nextDueDate = switch (material.getLifeTime().toLowerCase()) {
+                case "3 months" -> maintainedDate.plusMonths(3);
+                case "6 months" -> maintainedDate.plusMonths(6);
+                case "1 year" -> maintainedDate.plusYears(1);
+                case "1 month" -> maintainedDate.plusMonths(1);
+                default -> null; // or throw exception/log
+            };
+        }
+    }
 }

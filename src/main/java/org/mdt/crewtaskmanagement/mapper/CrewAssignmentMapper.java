@@ -1,14 +1,7 @@
 package org.mdt.crewtaskmanagement.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.dto.crewAssignment.CrewAssignmentDto;
-import org.mdt.crewtaskmanagement.model.Crew;
-import org.mdt.crewtaskmanagement.model.CrewAssignment;
-import org.mdt.crewtaskmanagement.model.Ship;
-import org.mdt.crewtaskmanagement.repository.CrewRepository;
-import org.mdt.crewtaskmanagement.repository.ShipRepository;
 
-import java.time.LocalDate;
 @RequiredArgsConstructor
 public class CrewAssignmentMapper {
 

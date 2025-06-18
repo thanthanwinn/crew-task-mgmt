@@ -1,17 +1,12 @@
 package org.mdt.crewtaskmanagement.security;
 
-import jakarta.persistence.Cacheable;
-import jakarta.persistence.Entity;
 import lombok.RequiredArgsConstructor;
-import org.mdt.crewtaskmanagement.model.Crew;
 import org.mdt.crewtaskmanagement.model.User;
-import org.mdt.crewtaskmanagement.repository.CrewRepository;
-import org.mdt.crewtaskmanagement.repository.UserRepository;
+import org.mdt.crewtaskmanagement.repository.entity.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;

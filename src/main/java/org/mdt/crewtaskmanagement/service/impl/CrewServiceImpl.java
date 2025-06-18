@@ -1,19 +1,21 @@
 package org.mdt.crewtaskmanagement.service.impl;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crew.CrewDto;
 import org.mdt.crewtaskmanagement.mapper.CrewMapper;
 import org.mdt.crewtaskmanagement.model.Crew;
-import org.mdt.crewtaskmanagement.model.Role;
-import org.mdt.crewtaskmanagement.repository.CrewRepository;
-import org.mdt.crewtaskmanagement.repository.RoleRepository;
+import org.mdt.crewtaskmanagement.param.CrewParam;
+import org.mdt.crewtaskmanagement.repository.entity.CrewRepository;
+import org.mdt.crewtaskmanagement.repository.entity.RoleRepository;
 import org.mdt.crewtaskmanagement.service.CrewService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,6 +73,21 @@ public class CrewServiceImpl implements CrewService {
     @Override
     public List<CrewDto> getAllCrewsByShipId(long shipId) {
         return crewRepository.findCrewsByShipId(shipId).stream().map(CrewMapper::toDto).collect(Collectors.toList());
+    }
+@Override
+    public List<CrewDto> search(CrewParam param){
+        Function<CriteriaBuilder, CriteriaQuery<Crew>> query = cb -> {
+            var cq = cb.createQuery(Crew.class);
+            var root = cq.from(Crew.class);
+
+             cq.select(root);
+             cq.where(param.where(cb,root));
+             cq.orderBy(cb.asc(root.get("firstName")));
+
+             return cq;
+        };
+
+        return crewRepository.search(query).stream().map(CrewMapper::toDto).collect(Collectors.toList());
     }
 
 

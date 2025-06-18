@@ -3,6 +3,7 @@ package org.mdt.crewtaskmanagement.controller;
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crew.CrewDto;
 import org.mdt.crewtaskmanagement.dto.crewAssignment.CrewAssignmentDto;
+import org.mdt.crewtaskmanagement.param.CrewParam;
 import org.mdt.crewtaskmanagement.service.CrewService;
 import org.mdt.crewtaskmanagement.service.impl.CrewAssignmentServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,14 @@ public class CrewController {
     @GetMapping("/ship/{shipId}")
     public ResponseEntity<List<CrewDto>> getCrewsByShipId(@PathVariable long shipId) {
         return ResponseEntity.ok(crewService.getAllCrewsByShipId(shipId));
+    }
+
+    @GetMapping("/search")
+    public List<CrewDto> search(@RequestParam(required = false) String firstname,
+                                @RequestParam(required = false) String lastName,
+                                @RequestParam(required = false) String crewRank) {
+        CrewParam param = new CrewParam(firstname, lastName, crewRank);
+        return crewService.search(param);
     }
 
 

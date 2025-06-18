@@ -3,14 +3,13 @@ package org.mdt.crewtaskmanagement;
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.model.Admin;
 import org.mdt.crewtaskmanagement.model.Role;
-import org.mdt.crewtaskmanagement.repository.AdminRepository;
-import org.mdt.crewtaskmanagement.repository.RoleRepository;
+import org.mdt.crewtaskmanagement.repository.entity.AdminRepository;
+import org.mdt.crewtaskmanagement.repository.entity.RoleRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor

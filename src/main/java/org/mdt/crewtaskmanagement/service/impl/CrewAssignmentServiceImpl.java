@@ -2,12 +2,10 @@ package org.mdt.crewtaskmanagement.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crewAssignment.CrewAssignmentDto;
-import org.mdt.crewtaskmanagement.model.Crew;
 import org.mdt.crewtaskmanagement.model.CrewAssignment;
-import org.mdt.crewtaskmanagement.model.Ship;
-import org.mdt.crewtaskmanagement.repository.CrewAssignmentRepository;
-import org.mdt.crewtaskmanagement.repository.CrewRepository;
-import org.mdt.crewtaskmanagement.repository.ShipRepository;
+import org.mdt.crewtaskmanagement.repository.entity.CrewAssignmentRepository;
+import org.mdt.crewtaskmanagement.repository.entity.CrewRepository;
+import org.mdt.crewtaskmanagement.repository.entity.ShipRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

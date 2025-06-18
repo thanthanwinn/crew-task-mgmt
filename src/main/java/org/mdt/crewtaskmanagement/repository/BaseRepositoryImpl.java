@@ -27,6 +27,9 @@ public class BaseRepositoryImpl<T,ID> extends SimpleJpaRepository<T,ID> implemen
         return entityManager.createQuery(cq).getResultList();
     }
 
+
+
+
     @Override
     public <R> Page<R> search(Function<CriteriaBuilder, CriteriaQuery<R>> queryFunc,
                               Function<CriteriaBuilder, CriteriaQuery<Long>> countFunc, int page, int size) {
@@ -45,5 +48,6 @@ public class BaseRepositoryImpl<T,ID> extends SimpleJpaRepository<T,ID> implemen
 
         return new PageImpl<R>(list, pageInfo, count);
     }
+
 
 }

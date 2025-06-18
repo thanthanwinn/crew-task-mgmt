@@ -5,8 +5,8 @@ import org.mdt.crewtaskmanagement.dto.ship.ShipDto;
 import org.mdt.crewtaskmanagement.mapper.ShipMapper;
 import org.mdt.crewtaskmanagement.model.Company;
 import org.mdt.crewtaskmanagement.model.Ship;
-import org.mdt.crewtaskmanagement.repository.CompanyRepository;
-import org.mdt.crewtaskmanagement.repository.ShipRepository;
+import org.mdt.crewtaskmanagement.repository.entity.CompanyRepository;
+import org.mdt.crewtaskmanagement.repository.entity.ShipRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

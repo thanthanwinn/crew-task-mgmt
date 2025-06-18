@@ -9,7 +9,7 @@ import org.mdt.crewtaskmanagement.mapper.MaterialMapper;
 import org.mdt.crewtaskmanagement.mapper.ReportRequestMapper;
 import org.mdt.crewtaskmanagement.model.*;
 import org.mdt.crewtaskmanagement.model.type.CrewRank;
-import org.mdt.crewtaskmanagement.repository.*;
+import org.mdt.crewtaskmanagement.repository.entity.*;
 import org.mdt.crewtaskmanagement.service.ReportRequestService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,18 +94,6 @@ public class ReportRequestServiceImpl implements ReportRequestService {
         return reportRequests.stream()
                 .map(r -> ReportRequestMapper.toDto(r))
                 .collect(Collectors.toList());
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

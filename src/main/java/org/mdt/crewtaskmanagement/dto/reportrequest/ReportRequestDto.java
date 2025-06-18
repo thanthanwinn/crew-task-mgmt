@@ -16,6 +16,7 @@ public class ReportRequestDto {
     private String content; //user enter
     private String requestDate;
     private List<MaterialRequestDto> requestedMaterials;
+    private String status;
     //user enter
 
 }

@@ -1,11 +1,10 @@
-package org.mdt.crewtaskmanagement.repository;
+package org.mdt.crewtaskmanagement.repository.entity;
 
 import org.mdt.crewtaskmanagement.dto.material.MaterialForRequestDto;
 import org.mdt.crewtaskmanagement.model.Material;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Optional;

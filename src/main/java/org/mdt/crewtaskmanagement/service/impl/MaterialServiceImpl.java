@@ -5,12 +5,10 @@ import org.mdt.crewtaskmanagement.dto.material.MaterialDto;
 import org.mdt.crewtaskmanagement.dto.material.MaterialForRequestDto;
 import org.mdt.crewtaskmanagement.mapper.MaterialMapper;
 import org.mdt.crewtaskmanagement.model.Material;
-import org.mdt.crewtaskmanagement.repository.MaterialRepository;
+import org.mdt.crewtaskmanagement.repository.entity.MaterialRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 

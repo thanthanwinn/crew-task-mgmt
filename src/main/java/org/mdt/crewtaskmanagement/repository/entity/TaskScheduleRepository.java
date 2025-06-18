@@ -1,4 +1,4 @@
-package org.mdt.crewtaskmanagement.repository;
+package org.mdt.crewtaskmanagement.repository.entity;
 
 import org.mdt.crewtaskmanagement.model.TaskAssignment;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -9,10 +9,10 @@ import org.mdt.crewtaskmanagement.model.Crew;
 import org.mdt.crewtaskmanagement.model.Ship;
 import org.mdt.crewtaskmanagement.model.Task;
 import org.mdt.crewtaskmanagement.model.TaskAssignment;
-import org.mdt.crewtaskmanagement.repository.CrewRepository;
-import org.mdt.crewtaskmanagement.repository.ShipRepository;
-import org.mdt.crewtaskmanagement.repository.TaskRepository;
-import org.mdt.crewtaskmanagement.repository.TaskScheduleRepository;
+import org.mdt.crewtaskmanagement.repository.entity.CrewRepository;
+import org.mdt.crewtaskmanagement.repository.entity.ShipRepository;
+import org.mdt.crewtaskmanagement.repository.entity.TaskRepository;
+import org.mdt.crewtaskmanagement.repository.entity.TaskScheduleRepository;
 import org.mdt.crewtaskmanagement.service.TaskService;
 import org.springframework.stereotype.Service;
 

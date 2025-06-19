@@ -3,6 +3,7 @@ package org.mdt.crewtaskmanagement.controller;
 import lombok.RequiredArgsConstructor;
 import org.mdt.crewtaskmanagement.dto.crew.CrewDto;
 import org.mdt.crewtaskmanagement.dto.crewAssignment.CrewAssignmentDto;
+import org.mdt.crewtaskmanagement.exception.ServiceBaseException;
 import org.mdt.crewtaskmanagement.param.CrewParam;
 import org.mdt.crewtaskmanagement.service.CrewService;
 import org.mdt.crewtaskmanagement.service.impl.CrewAssignmentServiceImpl;
@@ -30,6 +31,7 @@ public class CrewController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CrewDto> getCrewById(@PathVariable("id") long id) {
+
         return ResponseEntity.ok(crewService.getCrewById(id));
     }
 

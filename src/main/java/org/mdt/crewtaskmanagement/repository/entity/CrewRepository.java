@@ -11,15 +11,17 @@ import java.util.Optional;
 
 public interface CrewRepository extends BaseRepository<Crew, Long> {
     Optional<Crew> findByEmail(String email);
+
     @Query("SELECT c.id FROM Crew c WHERE c.email = :email")
     Optional<Long> getIdByEmail(@Param("email") String email);
 
-@Query("SELECT c FROM Crew c " +
+    @Query("SELECT c FROM Crew c " +
         "WHERE c.id NOT IN (SELECT ca.crew.id FROM CrewAssignment ca WHERE ca.endDate > CURRENT_DATE) " +
         "OR NOT EXISTS (SELECT 1 FROM CrewAssignment ca2 WHERE ca2.crew = c)")
-List<Crew> findAvailableCrewsForAssignment();
-@Query(" select ca.crew from CrewAssignment ca where  ca.ship.id = ?1")
-List<Crew> findCrewsByShipId(Long shipId);
+    List<Crew> findAvailableCrewsForAssignment();
+
+    @Query(" select ca.crew from CrewAssignment ca where  ca.ship.id = ?1")
+    List<Crew> findCrewsByShipId(Long shipId);
 
 
 

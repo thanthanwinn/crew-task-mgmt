@@ -1,7 +1,7 @@
 package org.mdt.crewtaskmanagement.repository.entity;
 
-import org.mdt.crewtaskmanagement.model.MaintenanceLog;
+import org.mdt.crewtaskmanagement.model.Maintenance;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MaintenanceLogRepository extends JpaRepository<MaintenanceLog, Long> {
+public interface MaintenanceLogRepository extends JpaRepository<Maintenance, Long> {
 }

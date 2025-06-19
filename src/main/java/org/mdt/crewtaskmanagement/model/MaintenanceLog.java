@@ -1,40 +1,52 @@
 package org.mdt.crewtaskmanagement.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDate;
-
 @Entity
+@Table(name = "maintenance_log")
 @Getter
 @Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class MaintenanceLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    //composite primary key
-    @OneToOne
-    private Material material;
-    private String title;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "maintenance_id", nullable = false)
+    private Maintenance maintenance;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crew_id", nullable = false)
+    private Crew maintainedBy;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "next_responsible_crew_id")
+    private Crew nextResponsiblePerson;
+
+    @Column(nullable = false)
     private String remark;
-    private String maintainedBy;
+
+    @NotNull
     private LocalDate maintainedDate;
+
+    @NonNull
     private LocalDate nextDueDate;
 
-    @PrePersist
-    @PreUpdate
-    public void calculateNextDueDate() {
-        if (maintainedDate != null) {
-            nextDueDate = switch (material.getLifeTime().toLowerCase()) {
-                case "3 months" -> maintainedDate.plusMonths(3);
-                case "6 months" -> maintainedDate.plusMonths(6);
-                case "1 year" -> maintainedDate.plusYears(1);
-                case "1 month" -> maintainedDate.plusMonths(1);
-                default -> null; // or throw exception/log
-            };
-        }
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private MaintenanceStatus status;
+
+    public enum MaintenanceStatus {
+        COMPLETED, PENDING, FAILED
     }
+
+
 }

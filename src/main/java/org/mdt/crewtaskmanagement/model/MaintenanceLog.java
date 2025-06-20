@@ -24,7 +24,7 @@ public class MaintenanceLog {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "crew_id", nullable = false)
-    private Crew maintainedBy;
+    private Crew duty; //may be positon.... or crew name// not sure yet//
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

@@ -39,7 +39,7 @@ public class MaintenanceLogService {
                 default -> null; // or throw exception/log
             };
         }
-        return nextDueDate;0
+        return nextDueDate;
     }
 
 

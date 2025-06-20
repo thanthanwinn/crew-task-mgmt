@@ -1,5 +1,5 @@
 package org.mdt.crewtaskmanagement.mapper;
-package org.mdt.crewtaskmanagement.mapper;
+
 
 import org.mdt.crewtaskmanagement.dto.maintenancelog.MaintenanceLogDto;
 import org.mdt.crewtaskmanagement.model.Maintenance;
@@ -11,8 +11,7 @@ import javax.swing.*;
 
 
 public interface MaintenanceLogMapper {
-    @Mapping(target = "category", source = "category", defaultValue = "EngineRoom")
-    @Mapping(target = "status", source = "status", defaultValue = "PENDING")
+
     MaintenanceLog toEntity(MaintenanceLogDto dto);
 
     MaintenanceLogDto toDto(MaintenanceLog entity);

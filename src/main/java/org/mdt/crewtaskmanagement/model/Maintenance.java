@@ -25,15 +25,12 @@ public class Maintenance {
     private Ship ship;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "material_id", nullable = false)
-    private Material material;
+   private String componentName;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private Category category;
+    private  String machineryName;
 
-    private String materialType;
+    private String machGroup;
 
     @OneToMany(mappedBy = "maintenance", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MaintenanceLog> logs = new ArrayList<>();
